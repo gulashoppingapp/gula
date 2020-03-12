@@ -1,0 +1,7 @@
+{
+  "name": "Turnapp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

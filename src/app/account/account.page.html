@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{(userdata | async)?.username}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="createpost()" color="success">
+      <ion-label>Sell</ion-label>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

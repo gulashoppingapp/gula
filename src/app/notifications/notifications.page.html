@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar padding="left" color="success">
+    <ion-title>Notifications</ion-title>
+    <ion-icon name="arrow-back" size="large" slot="start" (click)="gohome()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full">
+    <ion-card *ngFor="let notification of (notifications | async)">
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img src="assets/img/draw.png"></ion-img>
+        </ion-avatar>
+        <div>
+          <ion-label>name</ion-label>
+          <ion-label margin class="ion-text-wrap message">{{notification.message}}</ion-label>
+        </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start" color="light">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">Gula</ion-title>
+    <ion-icon name="search" slot="end" margin="right" class="top" (click)="search()"></ion-icon>
+  </ion-toolbar>
+  <ion-item lines="none">
+    <ion-button slot="start" fill="outline" color="success" (click)="categories()">Categories</ion-button>
+    <ion-button slot="start" color="success" (click)="filter()">
+     <ion-icon name="filter" ></ion-icon>
+      Filter</ion-button>
+   <ion-icon name="notifications" slot="end" (click)="notifications()"></ion-icon>
+   <ion-icon name="paper-plane"slot="end" (click)="chats()"></ion-icon>
+  </ion-item>
+</ion-header>
+
+<ion-content>
+ 
+  <div *ngFor="let post of (posts | async)">
+    <ion-card mode="md" class="cad">
+      <ion-item lines="full" no-margin no-padding>
+        <ion-label>{{post.itemname}}</ion-label>
+        <ion-label slot="end" class="ion-text-right bold">shs{{space}}{{post.price}}</ion-label>
+        <ion-icon name="ellipsis-vertical-sharp" slot="end"></ion-icon>
+      </ion-item>
+      <ion-img src="{{post.picture}}"></ion-img>
+      <ion-item>
+        <ion-label class="ion-text-wrap">{{post.description}}</ion-label> 
+      </ion-item>
+      <ion-item>
+        <ion-button slot="start"  color="success" (click)="buy(post.authorid, post.itemname)">Buy</ion-button>
+        <ion-button  fill="outline" color="success" (click)="createswap()">Swap</ion-button>
+      </ion-item>
+    </ion-card>
+   </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="createpost()" color="success">
+      <ion-label>Sell</ion-label>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

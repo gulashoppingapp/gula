@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar padding="left" color="success">
+    <ion-title>createpost</ion-title>
+    <ion-icon name="arrow-back" size="large" slot="start" (click)="gohome()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <input type="file" (change)="fileChanged($event)">
+  <!--ion-item lines="none">
+    <ion-img src="{{ image }}" style="width: max-content; height: max-content;"></ion-img> 
+  </ion-item-->
+  <!--div>
+    
+  </div-->
+  
+  <!--ion-item lines="none" *ngFor="let photo of photos">
+    <ion-img src="{{ photo }}" style="width: 200px; height: 150px;"></ion-img> 
+  </ion-item-->
+
+  <div *ngIf="image">
+    <ion-card>
+      <ion-item line="none">
+        <ion-input type="text" placeholder="Enter Items Name" [(ngModel)]="itemname" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+      </ion-item>
+      <ion-item line="none">
+        <ion-label slot="start">shs</ion-label>
+        <ion-input type="text" placeholder="Enter Item Price" [(ngModel)]="price" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+      </ion-item>
+      <ion-img src="{{ image }}" *ngIf="image"></ion-img>
+      <ion-item line="none">
+        <ion-input type="text" placeholder="Enter Description" [(ngModel)]="description" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+      </ion-item>
+      <ion-button shape="round" (click)="post()" color="primary" *ngIf="image">Post</ion-button>
+    </ion-card>
+  </div>
+
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button (click)="takePicture()" color="success">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>
