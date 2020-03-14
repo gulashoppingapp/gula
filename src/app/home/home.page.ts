@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { UserService } from '../user.service';
 import { AlertController } from '@ionic/angular';
+import * as firebase from 'firebase';
+import { CategoriesService } from '../categories.service';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,14 @@ import { AlertController } from '@ionic/angular';
 export class HomePage implements OnInit {
 
   buyerid: string
+  buyername: string
 
+  userdata: Observable<any>;
   space = " "
   
   postsCollection: AngularFirestoreCollection;
+
+  userscollection: AngularFirestoreCollection;
   
   posts: Observable<any>;
 
@@ -28,14 +34,26 @@ export class HomePage implements OnInit {
     private router: Router,
     public afs: AngularFirestore,
     public user: UserService,
-    public alert: AlertController
+    public alert: AlertController,
+    public categoryselected: CategoriesService,
+
+    activeRoute: ActivatedRoute
   ) {
     /*if (this.category === "") {
       this.category = "all"
     }*/
-    this.postsCollection = afs.collection('posts'/*, ref => 
-      ref.where('authorid', '==', this.category)*/);
+    this.category = activeRoute.snapshot.params["category"];
+    console.log(this.category);
+    this.postsCollection = afs.collection('posts', ref => 
+      ref.where('category', '==', this.category));
     this.posts = this.postsCollection.valueChanges()
+
+    this.userscollection = afs.collection('users')
+    this.userdata = this.userscollection.doc(this.user.getId()).valueChanges()
+
+    this.userdata.subscribe((data) => {
+      this.buyername = data.username
+    })
    }
 
   ngOnInit() {
@@ -66,21 +84,21 @@ export class HomePage implements OnInit {
   }
 
   buy(authorid, itemname) {
-    try{
-      const message = "Showed interest in your "+ itemname
-      this.buyerid = this.user.getId()
+    const message = "Showed interest in your "
+    this.buyerid = this.user.getId()
 
-      if (this.buyerid !== authorid) {
-        this.afs.collection('notifications').add({
-          buyerid: this.buyerid,
-          message: message,
-          authorid: authorid
-        })
-      }
-    } catch {
-      this.router.navigate(['/menu/login'])
-      this.showAlert("Login", "Login in order to sell")
-    }
+    
+
+    console.log(this.buyername)
+
+    this.afs.collection('notifications').add({
+      authorid: authorid,
+      message: message,
+      itemname: itemname,
+      buyerid: this.buyerid,
+      buyername: this.buyername,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
   }
 
   createswap() {
