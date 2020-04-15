@@ -1,9 +1,28 @@
-<div justify-content-center>
-	<div text-center>
-		<h4>Welcome To TurnApp</h4>
+<div class="color">
+	<div class="logo">
+		<ion-img src="assets/img/logo.png"></ion-img>
+	</div>
+	<div class="title">
+		<ion-label color="light">Gula</ion-label>
 	</div>
 </div>
-<ion-grid>
+
+<div class="input">
+	<div class="email">
+		<ion-input type="text" placeholder="Email" [(ngModel)]="email" autocomplete="off" spellcheck="off"></ion-input>
+	</div>
+	<div class="password">
+		<ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>	
+	</div>
+	<div class="button">
+		<ion-button color="success" size="large" (click)="elogin()" fill="outline">Login</ion-button>
+	</div>
+	<div class="register">
+		<h4 (click)="goToSignup()">Register instead?</h4>
+	</div>
+</div>
+
+<!--ion-grid>
 	<ion-row justify-content-center>
 		<ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
 			<div text-center>
@@ -20,11 +39,11 @@
 			</div>
 
 			<div padding>
-				<ion-button size="large" (click)="login()" expand="block">Login</ion-button>
-      </div>
-      <div text-center>
-				<h4 color="primary" (click)="goToSignup()">Not on TurnApp? Signup instead</h4>
+				<ion-button color="success" size="large" (click)="elogin()" expand="block">Login</ion-button>
+      		</div>
+      		<div text-center>
+				<h4 (click)="goToSignup()">Register instead?</h4>
 			</div>
 		</ion-col>
 	</ion-row>
-</ion-grid>
+</ion-grid-->

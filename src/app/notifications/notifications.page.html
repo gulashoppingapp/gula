@@ -1,22 +1,26 @@
 <ion-header>
   <ion-toolbar padding="left" color="success">
-    <ion-title>Notifications</ion-title>
-    <ion-icon name="arrow-back" size="large" slot="start" (click)="gohome()"></ion-icon>
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="gohome()"></ion-icon>
+      <ion-label>Notifications</ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list lines="full">
-    <ion-card *ngFor="let notification of (notifications | async)">
-      <ion-item>
-        <ion-avatar slot="start">
-          <ion-img src="assets/img/draw.png"></ion-img>
-        </ion-avatar>
-        <div>
-          <ion-label>name</ion-label>
-          <ion-label margin class="ion-text-wrap message">{{notification.message}}</ion-label>
-        </div>
-      </ion-item>
-    </ion-card>
+    <!--ion-card *ngFor="let notification of (notifications | async)">
+    </ion-card-->
+
+    <ion-item *ngFor="let notification of (notifications | async)" (click)="open(notification.buyerid, notification.buyerpicture, notification.buyername, notification.agenda, notification.picture, notification.itemname, notification.price, notification.description)">
+      <ion-avatar slot="start">
+        <ion-img src="{{notification.buyerpicture}}"></ion-img>
+      </ion-avatar>
+      <div>
+        <ion-label>{{notification.buyername}}</ion-label>
+        <ion-label margin class="ion-text-wrap message">{{notification.message}}{{notification.itemname}}</ion-label>
+      </div>
+    </ion-item>
+
   </ion-list>
 </ion-content>

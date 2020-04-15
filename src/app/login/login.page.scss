@@ -1,34 +1,26 @@
-/*app-login {
-    
-}*/
-
-$white-color: #fff;
-$height100: 100%;
-
-ion-grid {
-    width:100%;
-    height: $height100;
-    background: #dfdfdf;
+.title{
+    align-items: center;
+    text-align: center;
+    //margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(90, 179, 90);
 }
 
-ion-row {
-    height: $height100;
+.logo{
+    margin-top: 30px;
+    align-items: center;
+    text-align: center;
+    //margin: auto;
 }
 
-ion-col {
-    border: 1px solid #488aff;
-    background: $white-color;
+.color{
+    background: rgb(90, 179, 90);
 }
 
-ion-button {
-    font-weight: 300;
-}
-
-@media (min-width: 240px) and (max-width: 768px) {
-    ion-grid {
-        background: $white-color;
-    }
-    ion-col {
-        border: none;
-    }
+.input{
+    //align-items: center;
+    text-align: center;
+    margin-bottom: 150px;
+    margin-top: 10px;
 }

@@ -1,0 +1,31 @@
+.chat {
+    display: flex;
+    flex-direction: column;
+
+    .me{
+        position: relative;
+        margin: 20px 5px 0px;
+        max-width: 80%;
+        align-self: flex-end;
+        padding: 6px 10px 7px;
+        border-radius: 15px 15px 0;
+        background: rgb(240, 238, 238);
+        font-size: medium;
+        line-height: 1.4;
+    }
+
+    .you{
+        position: relative;
+        margin: 15px;
+        max-width: 80%;
+        align-self: flex-start;
+        padding: 6px 10px 7px;
+        border-color: rgb(216, 214, 214);
+        border-style: solid;
+        border-width: thin;
+        border-radius: 15px 15px 15px 0;
+        background: white;
+        font-size: medium;
+        line-height: 1.4;
+    }
+}

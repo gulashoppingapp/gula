@@ -64,4 +64,8 @@ export class MenuPage implements OnInit {
     this.router.navigate(['/menu/about'])
   }
 
+  help() {
+    this.router.navigate(['/menu/help'])
+  }
+
 }

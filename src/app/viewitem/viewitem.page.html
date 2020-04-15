@@ -1,9 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>viewitem</ion-title>
+<ion-header color="success">
+  <ion-toolbar color="success">
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="back()"></ion-icon>
+      <ion-label>{{itemname}}</ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item color="medium">
+    <ion-label class="bold">Shs {{itemPrice}}</ion-label>
+    <ion-icon name="star" slot="end" (click)="favorites()"></ion-icon>
+  </ion-item>
+  <ion-img src="{{pictureUrl}}"></ion-img>
+  <ion-item (click)="viewcontact()">
+    <ion-avatar>
+      <ion-img src="{{ownerpic}}"></ion-img>
+    </ion-avatar>
+    <div (click)="viewcontact()">
+      <ion-label>{{ownerName}}</ion-label>
+    </div>
+    <ion-label slot="end" color="success" class="ion-text-right bold" (click)="viewcontact()">ViewContact</ion-label>
+  </ion-item>
+  <ion-item no-padding>
+    <ion-button slot="start" color="success" (click)="buy()">Contact Vendor</ion-button>
+    <ion-button slot="end" color="success" fill="outline" (click)="createswap()">Swap This Item</ion-button>
+  </ion-item>
 </ion-content>

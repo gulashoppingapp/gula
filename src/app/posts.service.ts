@@ -4,8 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface Post {
-  image,
-  caption: string
+  picture,
+  itemname,
+  price,
+  description,
+  sellername,
+  sellerid,
+  sellerpic,
+  timestamp
 }
 
 @Injectable({
@@ -15,29 +21,48 @@ export class PostsService {
 
   private postsCollection : AngularFirestoreCollection<Post>;
 
-  private posts : Observable<Post[]>;
+  private post: Post
 
-  constructor(afs: AngularFirestore) {
-    this.postsCollection = afs.collection<Post>('Posts');
+  constructor(afs: AngularFirestore) { }
 
-    this.posts = this.postsCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
+  setPost(post: Post) {
+    this.post = post
+  }
 
-          return {id, ...data};
-        })
-      })
-    )
+   getPost() {
+     return this.post
    }
 
-   getPosts() {
-     return this.posts
+   getPostOwnername() {
+     return this.post.sellername
    }
 
-   postOwner(id) {
-     return this.postsCollection.doc<Post>(id).valueChanges()
+   getPostOwnerid() {
+    return this.post.sellerid
+   }
+
+   getPostDescription() {
+     return this.post.description
+   }
+
+   getPostPrice() {
+     return this.post.price
+   }
+
+   getPostPicture() {
+     return this.post.picture
+   }
+
+   getPostTimestamp() {
+     return this.post.timestamp
+   }
+
+   getPostname() {
+     return this.post.itemname
+   }
+
+   getPostOwnerPicture() {
+     return this.post.sellerpic
    }
 
    

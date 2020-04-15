@@ -5,7 +5,8 @@ import { first } from 'rxjs/operators';
 interface user{
     uid: string,
     email: string,
-    username: string
+    username: string,
+    picture
 }
 
 @Injectable()
@@ -31,6 +32,10 @@ export class UserService{
         return this.user.uid
     }
 
+    getpicture() {
+        return this.user.picture
+    }
+
     async isAuthenticated() {
         if (this.user) return true
 
@@ -41,6 +46,7 @@ export class UserService{
                 uid: user.uid,
                 email: user.email,
                 username: user.email,
+                picture: user.email
             })
 
             return true

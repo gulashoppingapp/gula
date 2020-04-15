@@ -7,7 +7,7 @@ import { MenuPage } from './menu.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/menu/home',
+    redirectTo: '/menu/login',
     pathMatch: 'full'
   },
   {
@@ -82,6 +82,46 @@ const routes: Routes = [
       {
         path: 'filter',
         loadChildren: () => import('../filter/filter.module').then( m => m.FilterPageModule)
+      },
+      {
+        path: 'help',
+        loadChildren: () => import('../help/help.module').then( m => m.HelpPageModule)
+      },
+      {
+        path: 'audio',
+        loadChildren: () => import('../audio/audio.module').then( m => m.AudioPageModule)
+      },
+      {
+        path: 'security',
+        loadChildren: () => import('../security/security.module').then( m => m.SecurityPageModule)
+      },
+      {
+        path: 'accountsettings',
+        loadChildren: () => import('../accountsettings/accountsettings.module').then( m => m.AccountsettingsPageModule)
+      },
+      {
+        path: 'viewswap',
+        loadChildren: () => import('../viewswap/viewswap.module').then( m => m.ViewswapPageModule)
+      },
+      {
+        path: 'createcategories',
+        loadChildren: () => import('../createcategories/createcategories.module').then( m => m.CreatecategoriesPageModule)
+      },
+      {
+        path: 'createsubcategories',
+        loadChildren: () => import('../createsubcategories/createsubcategories.module').then( m => m.CreatesubcategoriesPageModule)
+      },
+      {
+        path: 'subcategories',
+        loadChildren: () => import('../subcategories/subcategories.module').then( m => m.SubcategoriesPageModule)
+      },
+      {
+        path: 'testing',
+        loadChildren: () => import('../testing/testing.module').then( m => m.TestingPageModule)
+      },
+      {
+        path: 'passwordchange',
+        loadChildren: () => import('../passwordchange/passwordchange.module').then( m => m.PasswordchangePageModule)
       }
     ]
   }

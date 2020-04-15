@@ -1,9 +1,33 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-title>createswap</ion-title>
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="goback()"></ion-icon>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div>
+    <input type="file" (change)="fileChanged($event)">
+    <ion-card>
+      <ion-item line="none">
+        <ion-input type="text" placeholder="Enter Item Name" [(ngModel)]="itemname" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+      </ion-item>
+      <ion-item line="none">
+        <ion-label slot="start">shs</ion-label>
+        <ion-input type="text" placeholder="Enter Item Price (Optional)" [(ngModel)]="itemprice" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+      </ion-item>
+      <ion-img src="{{ itemimage }}" *ngIf="image"></ion-img>
+      <ion-item line="none">
+        <ion-input type="text" placeholder="Enter Description" [(ngModel)]="itemdescription" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+      </ion-item>
+      <ion-button shape="round" (click)="send()" color="success">send</ion-button>
+    </ion-card>
+  </div>
 
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="takePicture()" color="success">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

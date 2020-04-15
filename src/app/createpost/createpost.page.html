@@ -1,43 +1,155 @@
 <ion-header>
   <ion-toolbar padding="left" color="success">
-    <ion-title>createpost</ion-title>
-    <ion-icon name="arrow-back" size="large" slot="start" (click)="gohome()"></ion-icon>
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="gohome()"></ion-icon>
+      <ion-label>Create Ad</ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <input type="file" (change)="fileChanged($event)">
-  <!--ion-item lines="none">
-    <ion-img src="{{ image }}" style="width: max-content; height: max-content;"></ion-img> 
-  </ion-item-->
-  <!--div>
-    
-  </div-->
-  
-  <!--ion-item lines="none" *ngFor="let photo of photos">
-    <ion-img src="{{ photo }}" style="width: 200px; height: 150px;"></ion-img> 
-  </ion-item-->
 
-  <div *ngIf="image">
-    <ion-card>
-      <ion-item line="none">
-        <ion-input type="text" placeholder="Enter Items Name" [(ngModel)]="itemname" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+  <div class="container">
+    <ion-item lines="full">
+      <ion-label class="bold">Category</ion-label>
+    </ion-item>
+    <div class="category">
+      <ion-label>{{postsubcategory}}</ion-label>
+    </div>
+    <ion-item lines="full">
+      <ion-label slot="start" class="bold" [(ngModel)]="itemname">Item name</ion-label>
+      <div class="name">
+        <ion-input placeholder="Add item name"></ion-input>
+      </div>
+    </ion-item>
+    <div class="addimage">
+      <ion-label class="bold">Add an Image</ion-label>
+    </div>
+    <div class="imagespace">
+      <div class="image">
+        <ion-img src="{{ image }}" *ngIf="image"></ion-img>
+      </div>
+      <ion-item *ngIf="!image" lines="none">
+        <ion-fab-button class="cam" (click)="takePicture()" color="success">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button *ngIf="!image" class="gal" (click)="takePicture()" color="success">
+          <ion-icon name="picture-gallery"></ion-icon>
+        </ion-fab-button>
       </ion-item>
-      <ion-item line="none">
-        <ion-label slot="start">shs</ion-label>
-        <ion-input type="text" placeholder="Enter Item Price" [(ngModel)]="price" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+    </div>
+    <ion-item lines="full">
+      <ion-label class="bold">Price</ion-label>
+    </ion-item>
+    <div class="pricecontainer">
+      <ion-item lines="none">
+        <ion-select placeholder="UGX">
+          <ion-select-option>UGX</ion-select-option>
+          <ion-select-option>KSH</ion-select-option>
+          <ion-select-option>USD</ion-select-option>
+          <ion-select-option>EUR</ion-select-option>
+        </ion-select>
+        <div class="price">
+          <ion-input type="number" placeholder="Enter price here" [(ngModel)]="price"></ion-input>
+        </div>
       </ion-item>
-      <ion-img src="{{ image }}" *ngIf="image"></ion-img>
-      <ion-item line="none">
-        <ion-input type="text" placeholder="Enter Description" [(ngModel)]="description" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+    </div>
+    <ion-item lines="full">
+      <ion-label class="bold">Description</ion-label>
+    </ion-item>
+    <div class="description">
+      <ion-input placeholder="Tell us about this item.." [(ngModel)]="description"></ion-input>
+    </div>
+    <ion-item lines="full">
+      <ion-label class="bold">What brand?</ion-label>
+    </ion-item>
+    <div class="condition">
+      <ion-item lines="none">
+        <ion-select placeholder="choose brand">
+          <ion-select-option *ngFor="let brand of (brands | async)">{{brand.displayname}}</ion-select-option>
+          <!--ion-select-option>brand2</ion-select-option-->
+        </ion-select>
+        <ion-select *ngIf="model == true" placeholder="model1" class="model">
+          <ion-select-option *ngFor="let model of (models | async)">{{model.displayname}}</ion-select-option>
+          <!--ion-select-option>model2</ion-select-option-->
+        </ion-select>
       </ion-item>
-      <ion-button shape="round" (click)="post()" color="primary" *ngIf="image">Post</ion-button>
-    </ion-card>
+    </div>
+    <ion-item lines="full">
+      <ion-label class="bold">Select Condition</ion-label>
+    </ion-item>
+    <div class="condition">
+      <ion-item lines="none">
+        <ion-select placeholder="Brand new">
+          <ion-select-option>Used</ion-select-option>
+          <ion-select-option>Brand new</ion-select-option>
+        </ion-select>
+        <ion-select placeholder="1 day">
+          <ion-select-option>1 day</ion-select-option>
+          <ion-select-option>2 days</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <ion-item lines="full">
+      <ion-label class="bold">Where can we locate it?</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-icon name="location"></ion-icon>
+      <ion-select placeholder="Jinja">
+        <ion-select-option>Kampala</ion-select-option>
+        <ion-select-option>Jinja</ion-select-option>
+        <ion-select-option>Ntinda</ion-select-option>
+        <ion-select-option>Wandegeya</ion-select-option>
+        <ion-select-option>Namugongo</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="none">
+      <div class="postbutton">
+        <ion-button shape="round" (click)="postAd()" color="success" *ngIf="image">Post</ion-button>
+      </div>
+    </ion-item>
   </div>
 
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+</ion-content>
+
+<!--
+
+  <div>
+    <ion-item line="none" (click)="categories()">
+      <ion-label slot="start" >Category: {{postcategory}}</ion-label> 
+    </ion-item>
+    <ion-img src="{{ image }}" *ngIf="image"></ion-img>
+    <ion-item line="none">
+      <ion-input type="text" placeholder="Enter Items Name" [(ngModel)]="itemname" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+    </ion-item>
+    <ion-item line="none">
+      <ion-label slot="start">shs</ion-label>
+      <ion-input type="text" placeholder="Enter Item Price" [(ngModel)]="price" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+    </ion-item>
+    <ion-item line="none">
+      <ion-input type="text" placeholder="Enter Description" [(ngModel)]="description" autocomplete="false" autocorrect="false" spellcheck="false"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>condition</ion-label>
+      <ion-select placeholder="brand new">
+        <ion-select-option>Brand new</ion-select-option>
+        <ion-select-option>Used</ion-select-option>
+      </ion-select>
+      <ion-select slot="end" placeholder="0 days">
+        <ion-select-option>1 day</ion-select-option>
+        <ion-select-option>2 days</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="postbutton"></div>
+    <ion-button shape="round" (click)="postAd()" color="success" *ngIf="image">Post</ion-button>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
       <ion-fab-button (click)="takePicture()" color="success">
         <ion-icon name="camera"></ion-icon>
       </ion-fab-button>
     </ion-fab>
-</ion-content>
+
+    <input type="file" (change)="fileChanged($event)">
+
+-->

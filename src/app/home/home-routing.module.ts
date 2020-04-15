@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage
-  }
+  },
+  {path: ':category', component: HomePage}
 ];
 
 @NgModule({

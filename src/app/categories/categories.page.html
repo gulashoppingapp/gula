@@ -1,75 +1,83 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-icon name="arrow-back" size="large" slot="start" (click)="back()"></ion-icon>
-    <ion-title>Choose a category</ion-title>
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="back()"></ion-icon>
+      <ion-label>Choose a Category</ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list lines="none">
-    <ion-item>
-      <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Trending</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="car" slot="start"></ion-icon>
-      <ion-label>Vehicles</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="business" slot="start"></ion-icon>
-      <ion-label>Real Estate</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="phone-portrait" slot="start"></ion-icon>
-      <ion-label>Phones and Tablets</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="desktop" slot="start"></ion-icon>
-      <ion-label>Electronics</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Home and Garden</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Health and Beauty</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="shirt" slot="start"></ion-icon>
-      <ion-label>Fashion</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="american-football" slot="start"></ion-icon>
-      <ion-label>Hobbies and Sports</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="briefcase" slot="start"></ion-icon>
-      <ion-label>Jobs</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Services</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Babies and Kids</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Animals and Pets</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Agriculture</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Equipment and Tools</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="hammer" slot="start"></ion-icon>
-      <ion-label>Repair and Construction</ion-label>
+  <ion-list lines="none" *ngFor="let category of (categories | async)">
+    <ion-item lines="full" (click)="select(category.name, category.subs)">
+      <ion-icon name="{{category.icon}}" slot="start"></ion-icon>
+      <ion-label>{{category.displayname}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
+
+
+<!--ion-item routerLink="/subcategories/trending">
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>Trending</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/transportation">
+      <ion-icon name="car" slot="start"></ion-icon>
+      <ion-label>Vehicles</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/realestate">
+      <ion-icon name="business" slot="start"></ion-icon>
+      <ion-label>Real Estate</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/phonesandtablets"> 
+      <ion-icon name="phone-portrait" slot="start"></ion-icon>
+      <ion-label>Phones and Tablets</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/electronics">
+      <ion-icon name="desktop" slot="start"></ion-icon>
+      <ion-label>Electronics</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/homeandgarden">
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>Home and Garden</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/healthandbeauty">
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>Health and Beauty</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/fashion">
+      <ion-icon name="shirt" slot="start"></ion-icon>
+      <ion-label>Fashion</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/hobbiesandsports">
+      <ion-icon name="american-football" slot="start"></ion-icon>
+      <ion-label>Hobbies and Sports</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/jobs">
+      <ion-icon name="briefcase" slot="start"></ion-icon>
+      <ion-label>Jobs</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/services">
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>Services</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/babiesandkids">
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>Babies and Kids</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/animalsandpets">
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>Animals and Pets</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/agriculture">
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>Agriculture</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/equipmentandtools">
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>Equipment and Tools</ion-label>
+    </ion-item>
+    <ion-item routerLink="/subcategories/repairandconstruction">
+      <ion-icon name="hammer" slot="start"></ion-icon>
+      <ion-label>Repair and Construction</ion-label>
+    </ion-item-->

@@ -1,21 +1,26 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-icon name="arrow-back" size="large" slot="start" (click)="back()"></ion-icon>
-    <ion-title>Chats</ion-title>
-    <ion-icon name="search" size="large" slot="end" margin></ion-icon>
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="back()"></ion-icon>
+      <ion-label>Chats</ion-label>
+      <ion-icon name="search" size="large" slot="end"></ion-icon>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let chat of (chatsdata | async)" (click)="open(chat.person, chat.name, chat.number)">
       <ion-avatar slot="start">
-        <ion-img src="assets/img/draw.png"></ion-img>
+        <ion-img src="{{chat.picture}}"></ion-img>
       </ion-avatar>
-      <div margin>
-        <ion-label>username</ion-label>
-        <ion-label>message</ion-label>
+      <div margin (click)="open(chat.person, chat.name)">
+        <ion-label class="ion-text-left bold">{{chat.name}}</ion-label>
+        <ion-label color="medium">{{chat.message}}</ion-label>
       </div>
+      <ion-badge slot="end" mode="ios" *ngIf="chat.number > nomessage" color="danger">{{chat.number}}</ion-badge>
+      <!--ion-label *ngIf="chat.number > nomessage">{{chat.number}}</ion-label-->
+      <ion-label *ngIf="chat.status == status" slot="end" class="ion-text-right bold" color="success">{{status}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

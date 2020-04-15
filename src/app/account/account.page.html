@@ -8,9 +8,77 @@
 </ion-header>
 
 <ion-content>
+  <ion-card class="container">
+    <div class="picture">
+      <ion-avatar>
+        <ion-img src="{{profilepicture}}"></ion-img>
+      </ion-avatar>
+    </div>
+    <ion-item lines="none">
+      <div class="username">
+        <ion-label>{{(userdata | async)?.username}}</ion-label>
+        <div>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item class="lta">
+      <div class="locatedin info" slot="start">
+        <ion-label class="bold">Location</ion-label>
+        <ion-label>Kampala</ion-label>
+      </div>
+      <div class="trustedby info" slot="end">
+        <ion-label class="bold">Trusted By</ion-label>
+        <ion-label>100</ion-label>
+      </div>
+      <div class="ads info">
+        <ion-label class="bold">Ads</ion-label>
+        <ion-label>{{ads}}</ion-label>
+      </div>
+    </ion-item>
+  </ion-card>
+
+  <div class="title">
+    <ion-label>Ads</ion-label>
+  </div>
+
+  <div *ngFor="let post of (posts | async)">
+    <ion-card mode="md" class="cad">
+      <ion-item lines="full" no-margin no-padding (click)="viewItem(post.picture, post.itemname, post.price, post.description, post.authorname, post.authorid, post.timestamp)">
+        <ion-label>{{post.itemname}}</ion-label>
+        <ion-label slot="end" class="ion-text-right bold">shs{{space}}{{post.price}}</ion-label>
+        <ion-icon name="ellipsis-vertical-sharp" slot="end"></ion-icon>
+      </ion-item>
+      <ion-img src="{{post.picture}}" (click)="viewItem(post.picture, post.itemname, post.price, post.description, post.authorname, post.authorid, post.timestamp)"></ion-img>
+      <ion-item>
+        <ion-label class="ion-text-wrap">{{post.description}}</ion-label> 
+      </ion-item>
+      <ion-item>
+        <ion-button slot="start"  color="danger" (click)="delete(post.postid, post.picture)">
+          <ion-icon name="mail-outline"></ion-icon>
+           Remove</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-button slot="start"  color="primary" (click)="deliver(post.postid)">
+          <ion-icon name="mail-outline"></ion-icon>
+           Deliver</ion-button>
+      </ion-item>
+    </ion-card>
+   </div>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="createpost()" color="success">
       <ion-label>Sell</ion-label>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
+<!--
+  <div class="picture"
+    </div>
+    
+-->

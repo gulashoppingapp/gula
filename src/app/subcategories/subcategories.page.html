@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="back()"></ion-icon>
+      <ion-label></ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none" *ngFor="let sub of (subcategories | async)">
+    <ion-item lines="full" (click)="select(sub.name)">
+      <ion-label>{{sub.displayname}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

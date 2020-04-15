@@ -18,6 +18,10 @@ import { AuthService } from './auth.service';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { CategoriesService } from './categories.service';
+import { SwapService } from './swap.service';
+import { ChatService } from './chat.service';
+import { PostsService } from './posts.service';
 //import { Storage } from '@ionic/storage';
 
 @NgModule({
@@ -40,7 +44,11 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     File,
     UserService,
     Geolocation,
-    AuthService
+    AuthService,
+    CategoriesService,
+    SwapService,
+    ChatService,
+    PostsService
     //Storage
   ],
   bootstrap: [AppComponent]

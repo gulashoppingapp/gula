@@ -1,9 +1,135 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-title>filter</ion-title>
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="goback()"></ion-icon>
+      <ion-label>Add filters</ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="container">
+    <ion-item lines="full">
+      <ion-label class="bold">Sold by</ion-label>
+      <div class="locate">
+        <ion-label class="gray">(Gula store / other vendors)</ion-label>
+      </div>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-select placeholder="Gula store">
+        <ion-select-option>Gula store</ion-select-option>
+        <ion-select-option>Gula vendors</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label class="bold">Select ads location</ion-label>
+      <div class="locate">
+        <ion-label class="gray">(For faster delivery)</ion-label>
+      </div>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-icon name="location"></ion-icon>
+      <ion-select placeholder="Jinja">
+        <ion-select-option>Kampala</ion-select-option>
+        <ion-select-option>Jinja</ion-select-option>
+        <ion-select-option>Ntinda</ion-select-option>
+        <ion-select-option>Wandegeya</ion-select-option>
+        <ion-select-option>Namugongo</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="title">
+      <ion-item lines="full">
+        <ion-label class="bold">Price</ion-label>
+        <ion-select placeholder="UGX">
+          <ion-select-option>UGX</ion-select-option>
+          <ion-select-option>KSH</ion-select-option>
+          <ion-select-option>USD</ion-select-option>
+          <ion-select-option>EUR</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div class="prices">
+      <ion-item lines="none">
+        <ion-label class="bold">Min</ion-label>
+        <div class="price">
+          <ion-input placeholder="Enter minimum price."></ion-input>
+        </div>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="bold">Max</ion-label>
+        <div class="price">
+          <ion-input placeholder="Enter maximum price."></ion-input>
+        </div>
+      </ion-item>
+    </div>
+    <div class="title">
+      <ion-item lines="full">
+        <ion-label class="bold">Order by</ion-label>
+        <div class="locate">
+          <ion-label class="gray">(From cheaper / expensive)</ion-label>
+        </div>
+      </ion-item>
+    </div>
+    <div class="orderoptions">
+      <ion-item lines="none">
+        <ion-select placeholder="Cheaper">
+          <ion-select-option>Expensive</ion-select-option>
+          <ion-select-option>Cheaper</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div class="title">
+      <ion-item lines="full">
+        <ion-label class="bold">Select the brand</ion-label>
+      </ion-item>
+    </div>
+    <div class="condition">
+      <ion-item lines="none">
+        <ion-select placeholder="brand1">
+          <ion-select-option>brand1</ion-select-option>
+          <ion-select-option>brand2</ion-select-option>
+        </ion-select>
+        <ion-select placeholder="model1" class="model">
+          <ion-select-option>model1</ion-select-option>
+          <ion-select-option>model2</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div class="title">
+      <ion-item lines="full">
+        <ion-label class="bold">Condition</ion-label>
+        <div class="locate">
+          <ion-label class="gray">(Used or Brand new)</ion-label>
+        </div>
+      </ion-item>
+    </div>
+    <div class="condition">
+      <ion-item lines="none">
+        <ion-select placeholder="Brand new">
+          <ion-select-option>Used</ion-select-option>
+          <ion-select-option>Brand new</ion-select-option>
+        </ion-select>
+        <ion-select placeholder="1 day">
+          <ion-select-option>1 day</ion-select-option>
+          <ion-select-option>2 days</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <ion-item lines="full">
+      <ion-label class="bold">Recieve type</ion-label>
+      <div class="locate">
+        <ion-label class="gray">(Delivery / Pickup)</ion-label>
+      </div>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-select placeholder="Pickup" mode="ios">
+        <ion-select-option>Delivery</ion-select-option>
+        <ion-select-option>Pickup</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="postbutton">
+      <ion-button shape="round" (click)="postAd()" color="success" fill="outline">Apply filters</ion-button>
+    </div>
+  </div>
+  
 </ion-content>

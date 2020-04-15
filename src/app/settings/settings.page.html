@@ -1,10 +1,39 @@
 <ion-header>
-  <ion-toolbar padding-horizontal>
-    <ion-title>settings</ion-title>
-    <ion-icon name="arrow-back" size="large" slot="start" (click)="goback()"></ion-icon>
+  <ion-toolbar padding-horizontal color="success">
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="goback()"></ion-icon>
+      <ion-label>Settings</ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item lines="none" (click)="account()">
+    <ion-icon name="person" slot="start" margin="left" margin="right"></ion-icon>
+    <ion-label>Account</ion-label>
+  </ion-item>
+  <ion-item lines="none" (click)="about()">
+    <ion-icon name="information-circle" slot="start" margin="left" margin="right"></ion-icon>
+    <ion-label>About</ion-label>
+  </ion-item>
+  <ion-item lines="none" (click)="help()">
+    <ion-icon name="help-circle-outline" slot="start" margin="left" margin="right"></ion-icon>
+    <ion-label>Help</ion-label>
+  </ion-item>
+  <ion-item lines="none" (click)="logout()">
+    <ion-icon name="log-out" slot="start" margin="left" margin="right"></ion-icon>
+    <ion-label>Logout</ion-label>
+  </ion-item>
+  <ion-item lines="none" (click)="ads()">
+    <ion-icon name="log-out" slot="start" margin="left" margin="right"></ion-icon>
+    <ion-label>Ads</ion-label>
+  </ion-item>
+  <ion-item lines="none" (click)="security()">
+    <ion-icon name="shield-checkmark" slot="start" margin="left" margin="right"></ion-icon>
+    <ion-label>Security</ion-label>
+  </ion-item>
+  <ion-item lines="none" (click)="audio()">
+    <ion-icon name="volume-high" slot="start" margin="left" margin="right"></ion-icon>
+    <ion-label>Audio</ion-label>
+  </ion-item>
 </ion-content>

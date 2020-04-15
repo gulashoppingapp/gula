@@ -1,9 +1,72 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>viewcontact</ion-title>
+  <ion-toolbar color="success">
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="back()"></ion-icon>
+      <ion-label>{{contactname}}</ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card class="container">
+    <div class="picture">
+      <ion-avatar>
+        <ion-img src="{{contactpic}}"></ion-img>
+      </ion-avatar>
+    </div>
+    <ion-item lines="none">
+      <div class="username">
+        <ion-label>{{contactname}}</ion-label>
+        <div>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <div class="locatedin info" slot="start">
+        <ion-label class="bold">Location</ion-label>
+        <ion-label>Kampala</ion-label>
+      </div>
+      <div class="trustedby info" slot="end">
+        <ion-label class="bold">Trusted By</ion-label>
+        <ion-label>100</ion-label>
+      </div>
+      <div class="ads info">
+        <ion-label class="bold">Ads</ion-label>
+        <ion-label>3</ion-label>
+      </div>
+    </ion-item>
+  </ion-card>
+
+  <div class="title">
+    <ion-label>Ads</ion-label>
+  </div>
+
+  <div *ngFor="let post of (posts | async)">
+    <ion-card mode="md" class="cad">
+      <ion-item lines="full" no-margin no-padding (click)="viewItem(post.picture, post.itemname, post.price, post.description, post.authorname, post.authorpicture, post.authorid, post.timestamp)">
+        <ion-label>{{post.itemname}}</ion-label>
+        <ion-label slot="end" class="ion-text-right bold">shs{{space}}{{post.price}}</ion-label>
+        <ion-icon name="ellipsis-vertical-sharp" slot="end"></ion-icon>
+      </ion-item>
+      <ion-img src="{{post.picture}}" (click)="viewItem(post.picture, post.itemname, post.price, post.description, post.authorname, post.authorpicture, post.authorid, post.timestamp)"></ion-img>
+      <ion-item>
+        <ion-label class="ion-text-wrap">{{post.description}}</ion-label> 
+      </ion-item>
+      <ion-item>
+        <ion-button slot="start"  color="success" (click)="buy(post.authorid, post.itemname)">
+          <ion-icon name="mail-outline"></ion-icon>
+           Contact</ion-button>
+        <ion-icon name="star-outline" size="large" (click)="favorites(post.postid, post.picture, post.itemname, post.price, post.description, post.authorid, post.authorname)"></ion-icon>
+        <ion-button slot="end"  fill="outline" color="success" (click)="createswap(post.itemname, post.authorid, post.authorname, post.picture, post.price, post.description)">
+          <ion-icon name="repeat-outline"></ion-icon>
+           Swap Item</ion-button>
+      </ion-item>
+    </ion-card>
+   </div>
 
 </ion-content>

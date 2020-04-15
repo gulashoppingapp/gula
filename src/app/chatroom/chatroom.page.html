@@ -1,9 +1,49 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-title>chatroom</ion-title>
+    <ion-item color="success">
+      <ion-icon name="call" slot="end"></ion-icon>
+      <ion-icon name="ellipsis-vertical-sharp" slot="end"></ion-icon>
+       <!--ion-title>chatroom</ion-title-->
+      <ion-icon name="arrow-back" slot="start" (click)="back()"></ion-icon>
+      <ion-avatar slot="start" (click)="viewcontact()">
+        <ion-img src="{{profilepic}}"></ion-img>
+      </ion-avatar>
+      <ion-label slot="start" (click)="viewcontact()">{{recievername}}</ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="chat" *ngFor="let chat of (chatdata | async)">
+    <ion-item lines="none" *ngIf="senderid == chat.authorid">
+      <!--ion-avatar slot="end">
+        <ion-img></ion-img>
+      </ion-avatar-->
+      <div class="me" *ngIf="senderid == chat.authorid" slot="end">
+        {{chat.message}}
+      </div>
+    </ion-item>
 
+    <ion-item lines="none" *ngIf="senderid != chat.authorid">
+      <ion-avatar slot="start">
+        <ion-img src="{{profilepic}}"></ion-img>
+      </ion-avatar>
+      <div class="you" *ngIf="senderid != chat.authorid">
+        {{chat.message}}
+      </div>
+    </ion-item>
+    
+    <!--div class="you" *ngIf="senderid != chat.authorid">
+      {{chat.message}}
+    </div-->
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-item>
+    <ion-icon name="happy-outline" slot="start"></ion-icon>
+    <ion-input type="text" placeholder="Type a message." [(ngModel)]="text"></ion-input>
+    <ion-icon name="attach-outline"></ion-icon>
+    <ion-icon name="send" slot="end" (click)="send()"></ion-icon>
+  </ion-item>
+</ion-footer>

@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-item color="success" lines="none">
+      <ion-icon name="arrow-back" slot="start" (click)="goback()"></ion-icon>
+      <ion-label>Account Settings</ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="picture">
+    <div class="pic">
+      <ion-avatar>
+        <ion-img src="{{pic}}"></ion-img>
+      </ion-avatar>
+    </div>
+    <ion-button slot="start" color="primary" fill="outline">Change profile picture</ion-button>
+  </div>
+
+  <ion-item lines="none">
+    <ion-label slot="start">Username</ion-label>
+    <ion-input slot="end"  placeholder="{{(userdata | async)?.username}}" [(ngModel)]="username"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-icon name="location"></ion-icon>
+    <ion-select placeholder="location"></ion-select>
+  </ion-item>
+
+  <ion-item lines="full">
+    <ion-label slot="start">Rating</ion-label>
+    <div slot="end" class="rating">
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star-outline"></ion-icon>
+      <ion-icon name="star-outline"></ion-icon>
+      <ion-icon name="star-outline"></ion-icon>
+    </div>
+  </ion-item>
+
+  <div class="bio">
+    <div class="biotitle">
+      <ion-label class="bold">Biography</ion-label>
+    </div>
+    <div>
+      <ion-input placeholder="Tell us about you..." class="ion-text-wrap" [(ngModel)]="biography"></ion-input>
+    </div>
+  </div>
+
+  <div>
+    <div class="numtitle">
+      <ion-item lines="full">
+        <ion-label class="bold">Mobile Number</ion-label>
+      </ion-item>
+    </div>
+    <div class="numinput">
+      <ion-item lines="none">
+        <ion-select placeholder="+256"></ion-select>
+        <div class="number">
+          <ion-input type="number" placeholder="* * * * * *" [(ngModel)]="mobilenumber"></ion-input>
+        </div>
+      </ion-item>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer *ngIf="changed">
+  <div class="save">
+    <ion-button class="bold" fill="outline" color="success" (click)="save()">save</ion-button>
+  </div>
+</ion-footer>
